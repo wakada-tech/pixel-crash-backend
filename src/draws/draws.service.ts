@@ -1,10 +1,14 @@
-import { Controller, Post, Body } from '@nestjs/common';
+import { Injectable, Inject } from '@nestjs/common';
+import { Model } from 'mongoose';
+import { Draw } from './draws.interface';
 import { DrawsUploadDto } from './draws.dto';
 
-@Controller('draws')
-export class DrawsController {
-  @Post()
-  upload(@Body() drawsUploadDto: DrawsUploadDto) {
-    return drawsUploadDto
+@Injectable()
+export class DrawsService {
+  constructor(@Inject('DRAWS_MODEL') private model: Model<Draw>) {}
+
+  async upload(params: DrawsUploadDto): Promise<Draw> {
+    const draws = new this.model(params)
+    return draws.save()
   }
 }
