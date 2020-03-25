@@ -7,8 +7,8 @@ import { DrawsUploadDto } from './draws.dto';
 export class DrawsService {
   constructor(@Inject('DRAWS_MODEL') private model: Model<Draw>) {}
 
-  async upload(params: DrawsUploadDto): Promise<Draw> {
-    const draws = new this.model(params)
+  async create(body: DrawsUploadDto): Promise<Draw> {
+    const draws = new this.model(body)
     return draws.save()
   }
 }
