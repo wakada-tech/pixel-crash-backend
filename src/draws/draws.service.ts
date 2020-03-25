@@ -15,4 +15,12 @@ export class DrawsService {
   async list(): Promise<Draw[]> {
     return this.model.find().exec()
   }
+
+  async find(id: string): Promise<Draw> {
+    return (await this.model.findById(id)).execPopulate()
+  }
+
+  async top10(): Promise<Draw[]> {
+    return this.model.find().sort({ createdAt: '' })
+  }
 }
