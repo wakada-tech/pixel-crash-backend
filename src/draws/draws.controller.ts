@@ -1,4 +1,4 @@
-import { Controller, Post, Body } from '@nestjs/common';
+import { Controller, Post, Body, Get } from '@nestjs/common';
 import { DrawsUploadDto } from './draws.dto';
 import { DrawsService } from './draws.service';
 
@@ -9,5 +9,10 @@ export class DrawsController {
   @Post()
   upload(@Body() body: DrawsUploadDto) {
     this.service.create(body)
+  }
+
+  @Get('list')
+  list() {
+    return this.service.list()
   }
 }

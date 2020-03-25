@@ -11,4 +11,8 @@ export class DrawsService {
     const draws = new this.model(body)
     return draws.save()
   }
+
+  async list(): Promise<Draw[]> {
+    return this.model.find().exec()
+  }
 }
