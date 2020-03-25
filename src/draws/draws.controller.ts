@@ -20,4 +20,9 @@ export class DrawsController {
   find(@Param('id') id: string) {
     return this.service.find(id)
   }
+
+  @Get('top')
+  top() {
+    return this.service.top() 
+  }
 }

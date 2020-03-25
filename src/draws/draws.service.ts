@@ -20,7 +20,7 @@ export class DrawsService {
     return (await this.model.findById(id)).execPopulate()
   }
 
-  async top10(): Promise<Draw[]> {
-    return this.model.find().sort({ createdAt: '' })
+  async top(): Promise<Draw[]> {
+    return this.model.find().sort({ createdAt: -1 }).limit(10)
   }
 }
